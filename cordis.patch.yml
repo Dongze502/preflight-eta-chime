@@ -1,0 +1,18 @@
+# ============================================================================
+# preflight-eta-chime —— DSH bundle patch
+# ============================================================================
+# 安装时会由 bundle 层把这一行插进 profile 的配置树：宿主半注册 HTTP 端点、
+# 订阅 session/event；浏览器半挂载预检按钮、ETA 药丸与完成铃声。
+# 三个模块各自可开关，任一模块故障都不影响主对话。
+# ============================================================================
+
+- insert:
+    - id: preflight-eta-chime
+      name: preflight-eta-chime
+      config:
+        preflightEnabled: true
+        etaEnabled: true
+        chimeEnabled: true
+        ringtone: ding
+        volume: 0.7
+        preflightTimeoutMs: 8000

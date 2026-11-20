@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Preflight ETA Chime",
+    "description": "Ask a read-only subagent how big the next task is, watch a live estimate while it runs, and hear a chime when the conversation finishes."
+  }
+}

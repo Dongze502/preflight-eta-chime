@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Preflight ETA Chime",
+    "description": "发送前用只读子代理做一次按需预检，执行中展示实时预计耗时，对话完成时播放铃声提醒。"
+  }
+}

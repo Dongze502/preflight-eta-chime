@@ -1,0 +1,18 @@
+# Build output and local install state are not source.
+lib/
+node_modules/
+node_modules.old/
+dist/
+
+# Local DSH data that tests and manual runs create.
+.dsh/
+*.log
+
+# Editor and OS noise.
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Scratch used while reverse-engineering the host; not part of the plugin.
+research/

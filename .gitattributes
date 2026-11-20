@@ -1,0 +1,7 @@
+# Keep the repository text-only and LF so the same lines build on every host.
+* text=auto eol=lf
+*.wav binary
+*.png binary
+*.jpg binary
+*.webp binary
+*.ico binary

@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install
+        run: npm install --no-audit --no-fund
+
+      - name: Build
+        run: npm run build
+
+      - name: Host tests
+        run: node test/index.test.mjs
+
+      - name: DOM component tests
+        run: node test/client.dom.test.mjs
+
+      - name: Client smoke
+        run: |
+          node scripts/client-settings-entry.mjs
+          node scripts/client-preflight-card.mjs
+
+      - name: Client syntax
+        run: node --check client.js
+
+      - name: Bundle has no runtime @deepseek-ai import
+        run: |
+          if grep -RInE "^\s*(import|export)\s[^;]*from\s+['\"]@deepseek-ai/" lib/ ; then
+            echo "lib/ must not import host packages at runtime" >&2
+            exit 1
+          fi
