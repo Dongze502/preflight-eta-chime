@@ -27,6 +27,7 @@ if [[ -z "${GH_TOKEN}" ]]; then
   exit 1
 fi
 
+export GH_TOKEN
 API="https://api.github.com"
 CURL=(curl -sS --ssl-no-revoke --http1.1 -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json")
 
