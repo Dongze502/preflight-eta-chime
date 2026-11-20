@@ -16,3 +16,20 @@ Thumbs.db
 
 # Scratch used while reverse-engineering the host; not part of the plugin.
 research/
+
+# One-off API responses downloaded while publishing; never commit these.
+*.json.tmp
+ci-logs.zip
+runs.json
+jobs.json
+put.json
+putres.json
+repo.json
+fork.json
+merge.json
+mkref.json
+up.json
+upref.json
+fref2.json
+forkref.json
+probe.json
