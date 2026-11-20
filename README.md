@@ -215,6 +215,12 @@ npm run smoke        # 用假 window + react stub 渲染药丸/设置表单/预�
 
 构建产物 `lib/*.js` 里 `@deepseek-ai/*` 只出现在 `import type` 中（编译后为 0 处），所以插件装进 profile 时不需要宿主包可解析。
 
+## 发布与上架
+
+仓库里已经备好发布用的文件：`.github/workflows/ci.yml`（构建 + 两个测试文件 + 两个 smoke + 禁止运行时 `@deepseek-ai` import）、`docs/PUBLISHING.md`（从建仓到上架的完整步骤）、`docs/market-entry.yml`（awesome-dsh-plugin 的投稿条目草稿，图标用位图 `assets/icon-512.png`，因为该目录拒绝 SVG）。
+
+`npm run verify` 通过后，`npm pack --pack-destination dist` 产出的 tarball 可以直接挂到 GitHub Release，插件也能用 `dsh plugin --profile web add <tarball 或仓库地址>` 装。
+
 ## 许可
 
 MIT，见 `LICENSE`。
