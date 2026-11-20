@@ -87,7 +87,11 @@ function setupDom() {
   const dom = new JSDOM('<!doctype html><html><body></body></html>', { url: 'http://127.0.0.1:5063/', pretendToBeVisual: true })
   const { window } = dom
   for (const key of ['window', 'document', 'navigator', 'HTMLElement', 'Element', 'Node', 'Event', 'MouseEvent', 'KeyboardEvent', 'CustomEvent', 'FileReader', 'Notification', 'getComputedStyle', 'requestAnimationFrame', 'cancelAnimationFrame']) {
-    if (window[key] !== undefined) globalThis[key] = window[key]
+    if (window[key] === undefined) continue
+    // Node 21+ exposes some of these (notably `navigator`) as getter-only
+    // globals, so a plain assignment throws "Cannot set property navigator".
+    // defineProperty works on both the writable and the getter-only case.
+    Object.defineProperty(globalThis, key, { value: window[key], configurable: true, writable: true })
   }
   globalThis.IS_REACT_ACT_ENVIRONMENT = true
   return window
